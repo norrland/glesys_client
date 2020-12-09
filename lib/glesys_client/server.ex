@@ -3,6 +3,26 @@ defmodule GlesysClient.Server do
 
   defstruct serverid: nil, description: "", memorysize: 0, cpucores: 0, templatename: ""
 
+  @doc """
+  Returns a list of servers from your account.
+
+  Returns `[%GlesysClient.Server{}]`.
+
+  ## Examples
+
+    iex> GlesysClient.Server.list_servers
+
+    [
+      %GlesysClient.Server{
+        cpucores: 1,
+        description: "myVm",
+        memorysize: 1024,
+        serverid: "wps123456",
+        templatename: "Centos 7 64-bit"
+      }
+    ]
+
+  """
   def list_servers() do
     endpoint = "/server/list"
     Client.request("https://api.glesys.com"<>endpoint).body
